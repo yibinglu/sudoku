@@ -1,2 +1,2 @@
-# sudoku
-Soduku game and solver using recursive backtracking.
+# Sudoku
+Soduku game and solver using a recurive backtracking algorithm.
