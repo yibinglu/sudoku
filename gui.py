@@ -1,14 +1,15 @@
 # gui.py
 # Pygame UI
 
-from turtle import window_height
+from pprint import pprint
 import pygame
 import time
 from logic import solve_grid, check_num
+import copy
 
 pygame.init()
 
-board = [[0, 0, 0, 2, 6, 0, 7, 0, 1],
+BOARD = [[0, 0, 0, 2, 6, 0, 7, 0, 1],
          [6, 8, 0, 0, 7, 0, 0, 9, 0],
          [1, 9, 0, 0, 0, 4, 5, 0, 0],
          [8, 2, 0, 1, 0, 0, 0, 4, 0],
@@ -17,6 +18,11 @@ board = [[0, 0, 0, 2, 6, 0, 7, 0, 1],
          [0, 0, 9, 3, 0, 0, 0, 7, 4],
          [0, 4, 0, 0, 5, 0, 0, 3, 6],
          [7, 0, 3, 0, 1, 8, 0, 0, 0]]
+
+player_board = copy.deepcopy(BOARD)
+answer_board = copy.deepcopy(BOARD)
+
+solve_grid(0, 0, answer_board)
 
 rows = 9
 cols = 9
@@ -47,7 +53,7 @@ def draw_grid(window):
                          (i * cell_width, board_height), weight)
 
 
-def draw_window(window, board):
+def draw_window(window):
     window.fill((255, 255, 255))
     draw_grid(window)
     pygame.display.update()
@@ -65,7 +71,7 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
 
-        draw_window(window, board)
+        draw_window(window)
 
     pygame.quit()
 

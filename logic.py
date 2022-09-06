@@ -14,7 +14,7 @@ grid = [[0, 0, 0, 2, 6, 0, 7, 0, 1],
         [7, 0, 3, 0, 1, 8, 0, 0, 0]]
 
 
-def solve_grid(row, col):
+def solve_grid(row, col, grid):
     '''Solves sudoku board using backtracking'''
     if col == 9 and row == 8:  # Reached the end of the board
         return True
@@ -25,20 +25,20 @@ def solve_grid(row, col):
 
     if grid[row][col] == 0:  # Found empty cell, solve
         for num in range(1, 10):
-            if check_num(row, col, num):
+            if check_num(row, col, num, grid):
                 grid[row][col] = num
 
-                if solve_grid(row, col + 1):  # Recursive call
+                if solve_grid(row, col + 1, grid):  # Recursive call
                     return True
 
         grid[row][col] = 0  # Backtrack
 
     else:  # Move onto next cell
-        if solve_grid(row, col + 1):
+        if solve_grid(row, col + 1, grid):
             return True
 
 
-def check_num(row, col, num):
+def check_num(row, col, num, grid):
     '''Check if num is a viable option in current row-col cell'''
     rowRange = 0
     colRange = 0
