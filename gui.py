@@ -39,7 +39,7 @@ for i in range(rows):
         possibilities[i].append([])
 
 
-def draw_grid(window):
+def draw_outline(window):
     for i in range(rows+1):
         if i % 3 == 0 and i != 0:
             weight = 4
@@ -51,6 +51,18 @@ def draw_grid(window):
                          (win_width, i*cell_width), weight)
         pygame.draw.line(window, (0, 0, 0), (i * cell_width, 0),
                          (i * cell_width, board_height), weight)
+
+
+def draw_grid(window):
+    for y in range(rows):
+        for x in range(cols):
+            if player_board[y][x] != 0:
+                fnt = pygame.font.SysFont("timesnewroman", 40)
+                text = fnt.render(str(player_board[y][x]), 1, (0, 0, 0))
+                window.blit(text, (cell_width/3 + x*cell_width,
+                                   cell_height/6 + y*cell_height))
+
+    draw_outline(window)
 
 
 def draw_window(window):
