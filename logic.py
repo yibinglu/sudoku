@@ -1,3 +1,4 @@
+# logic.py
 # Recursive backtracking file
 
 import pprint
@@ -24,7 +25,7 @@ def solve_grid(row, col):
 
     if grid[row][col] == 0:  # Found empty cell, solve
         for num in range(1, 10):
-            if checkNum(row, col, num):
+            if check_num(row, col, num):
                 grid[row][col] = num
 
                 if solve_grid(row, col + 1):  # Recursive call
@@ -32,12 +33,12 @@ def solve_grid(row, col):
 
         grid[row][col] = 0  # Backtrack
 
-    else: # Move onto next cell
+    else:  # Move onto next cell
         if solve_grid(row, col + 1):
             return True
 
 
-def checkNum(row, col, num):
+def check_num(row, col, num):
     '''Check if num is a viable option in current row-col cell'''
     rowRange = 0
     colRange = 0
@@ -76,5 +77,5 @@ def checkNum(row, col, num):
     return True
 
 
-solve_grid(0, 0)
-pprint.pp(grid)
+# solve_grid(0, 0)
+# pprint.pp(grid)
