@@ -84,27 +84,32 @@ def draw_grid(window):
 
 
 def mouse_pressed():
+    global highlight_num
+    global add_num
+    global select_num
+    global x
+    global y
     highlight_num = False
     add_num = False
     mouse_x, mouse_y = pygame.mouse.get_pos()
     x = math.floor(mouse_x/cell_width)
     y = math.floor(mouse_y/cell_height)
 
-    if x >= 0 and x <= 8 and y >= 0 and y <= 8:
-        if int(player_board[y][x]) != 0:
-            highlight_num = True
+    # if x >= 0 and x <= 8 and y >= 0 and y <= 8:
+    if int(player_board[y][x]) != 0:
+        highlight_num = True
 
-            if BOARD[y][x] != 0:
-                select_num = BOARD[y][x]
+        if BOARD[y][x] != 0:
+            select_num = BOARD[y][x]
 
-            else:
-                select_num = int(player_board[y][x])
+        else:
+            select_num = int(player_board[y][x])
 
-        if BOARD[y][x] == 0:
-            add_num = True
-            cell_x = x
-            cell_y = y
-            print(add_num, cell_x, cell_y, x, y)
+    if BOARD[y][x] == 0:
+        add_num = True
+        cell_x = x
+        cell_y = y
+        print(add_num, cell_x, cell_y, x, y)
 
 
 def draw_window(window):
@@ -121,7 +126,7 @@ def main():
 
     while run:
         clock.tick(60)
-        for event in pygame.event.get():                           
+        for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
 
